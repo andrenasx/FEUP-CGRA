@@ -21,43 +21,43 @@ class MyTangram extends CGFobject {
         this.green = new CGFappearance(scene);
         this.green.setAmbient(0.2, 0.2, 0.2, 1.0);
         this.green.setDiffuse(0, 1, 0, 1);
-        this.green.setSpecular(0, 1, 0, 1);
+        this.green.setSpecular(1, 1, 1, 1);
         this.green.setShininess(10.0);
 
         this.pink = new CGFappearance(scene);
         this.pink.setAmbient(0.2, 0.2, 0.2, 1.0);
         this.pink.setDiffuse(1, 0.6078, 0.8118, 1);
-        this.pink.setSpecular(1, 0.6078, 0.8118, 1);
+        this.pink.setSpecular(1, 1, 1, 1);
         this.pink.setShininess(10.0);
 
         this.yellow = new CGFappearance(scene);
         this.yellow.setAmbient(0.2, 0.2, 0.2, 1.0);
         this.yellow.setDiffuse(1, 1, 0, 1);
-        this.yellow.setSpecular(1, 1, 0, 1);
+        this.yellow.setSpecular(1, 1, 1, 1);
         this.yellow.setShininess(10.0);
 
         this.red = new CGFappearance(scene);
         this.red.setAmbient(0.2, 0.2, 0.2, 1.0);
         this.red.setDiffuse(1, 0, 0, 1);
-        this.red.setSpecular(1, 0, 0, 1);
+        this.red.setSpecular(1, 1, 1, 1);
         this.red.setShininess(10.0);
 
         this.purple = new CGFappearance(scene);
         this.purple.setAmbient(0.2, 0.2, 0.2, 1.0);
         this.purple.setDiffuse(0.6, 0.2, 0.6, 1);
-        this.purple.setSpecular(0.6, 0.2, 0.6, 1);
+        this.purple.setSpecular(1, 1, 1, 1);
         this.purple.setShininess(10.0);
         
         this.blue = new CGFappearance(scene);
         this.blue.setAmbient(0.2, 0.2, 0.2, 1.0);
         this.blue.setDiffuse(0, 0.75, 1, 1);
-        this.blue.setSpecular(0, 0.75, 1, 1);
+        this.blue.setSpecular(1, 1, 1, 1);
         this.blue.setShininess(10.0);
 
         this.orange = new CGFappearance(scene);
         this.orange.setAmbient(0.2, 0.2, 0.2, 1.0);
         this.orange.setDiffuse(1, 0.561, 0, 1);
-        this.orange.setSpecular(1, 0.561, 0, 1);
+        this.orange.setSpecular(1, 1, 1, 1);
         this.orange.setShininess(10.0);
     }
 
