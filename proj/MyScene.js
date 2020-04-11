@@ -27,7 +27,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
         this.cube = new MyCubeMap(this);
-
+        this.cylinder = new MyCylinder(this, 6);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -89,6 +89,13 @@ class MyScene extends CGFscene {
         this.material.apply();
         //this.sphere.display();
         this.cube.display();
+        if(this.displayNormals){
+            this.cylinder.enableNormalViz();
+        }
+        else{
+            this.cylinder.disableNormalViz();
+        }
+        this.cylinder.display();
 
         // ---- END Primitive drawing section
     }
