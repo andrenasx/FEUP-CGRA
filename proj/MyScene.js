@@ -26,10 +26,24 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
-        this.cube = new MyCubeMap(this);
+        //this.cube = new MyCubeMap(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
+
+        //Material
+        this.material=new CGFappearance(this);
+        this.material.setAmbient(0.1,0.1,0.1,1);
+        this.material.setDiffuse(0.9,0.9,0.9,1);
+        this.material.setDiffuse(0.2,0.2,0.2,1);
+        this.material.setShininess(10);
+        this.material.loadTexture('images/earth.jpg');
+        this.material.setTextureWrap('REPEAT','REPEAT');
+
+        //Texture
+        this.earth = new CGFtexture(this, 'images/earth.jpg');
+
+        this.material.setTexture(this.earth);
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -71,8 +85,9 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        //this.incompleteSphere.display();
-        this.cube.display();
+        this.material.apply();
+        this.incompleteSphere.display();
+        //this.cube.display();
 
         // ---- END Primitive drawing section
     }
