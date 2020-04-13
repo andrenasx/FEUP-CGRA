@@ -32,6 +32,8 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
+        this.speedFactor = 1; //default value
+        this.scaleFactor = 1;
 
         //Material
         this.material=new CGFappearance(this);
@@ -46,9 +48,6 @@ class MyScene extends CGFscene {
         this.earth = new CGFtexture(this, 'images/earth.jpg');
 
         this.material.setTexture(this.earth);
-        this.speedFactor = 1; //default value
-        //Factors
-        this.scaleFactor = 1;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
