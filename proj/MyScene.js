@@ -48,6 +48,7 @@ class MyScene extends CGFscene {
         this.material.setTexture(this.earth);
 
         //Factors
+        this.scaleFactor = 1;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -127,6 +128,7 @@ class MyScene extends CGFscene {
             this.cylinder.disableNormalViz();
         }
         this.cylinder.display();*/
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.vehicle.display();
 
         // ---- END Primitive drawing section

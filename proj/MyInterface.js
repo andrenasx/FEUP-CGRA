@@ -18,9 +18,11 @@ class MyInterface extends CGFinterface {
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
+        //Slider element in GUI
+        this.gui.add(this.scene, 'scaleFactor', 0.5, 3.0).name('Scale');
 
         this.initKeys();
-        
+
         return true;
     }
 
