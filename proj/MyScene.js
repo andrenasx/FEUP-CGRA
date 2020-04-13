@@ -79,7 +79,7 @@ class MyScene extends CGFscene {
             text += "S ";
             keysPressed = true;
         }
-        if (keyPressed) console.log(text);
+        if (keysPressed) console.log(text);
     }
 
     display() {
