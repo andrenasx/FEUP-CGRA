@@ -46,7 +46,7 @@ class MyScene extends CGFscene {
         this.earth = new CGFtexture(this, 'images/earth.jpg');
 
         this.material.setTexture(this.earth);
-
+        this.speedFactor = 1; //default value
         //Factors
         this.scaleFactor = 1;
     }
@@ -75,11 +75,11 @@ class MyScene extends CGFscene {
         // Check for key codes e.g. in https://keycode.info/
 
         if (this.gui.isKeyPressed("KeyW")){
-            this.vehicle.accelerate(0.2);
+            this.vehicle.accelerate(0.2*this.speedFactor);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyS")){
-            this.vehicle.accelerate(-0.2);
+            this.vehicle.accelerate(-0.2*this.speedFactor);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyA")){
