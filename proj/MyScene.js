@@ -46,6 +46,8 @@ class MyScene extends CGFscene {
         this.earth = new CGFtexture(this, 'images/earth.jpg');
 
         this.material.setTexture(this.earth);
+
+        //Factors
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -67,19 +69,32 @@ class MyScene extends CGFscene {
         this.checkKeys();
     }
     checkKeys(){
-        var text = "Keys pressed: ";
         var keysPressed = false;
 
         // Check for key codes e.g. in https://keycode.info/
+
         if (this.gui.isKeyPressed("KeyW")){
-            text += "W ";
+            this.vehicle.accelerate(0.2);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyS")){
-            text += "S ";
+            this.vehicle.accelerate(-0.2);
             keysPressed = true;
         }
-        if (keysPressed) console.log(text);
+        if (this.gui.isKeyPressed("KeyA")){
+            this.vehicle.turn(10);
+            keysPressed = true;
+        }
+        if (this.gui.isKeyPressed("KeyD")){
+            this.vehicle.turn(-10);
+            keysPressed = true;
+        }
+        if (this.gui.isKeyPressed("KeyR")){
+            this.vehicle.reset();
+            keysPressed = true;
+        }
+
+        if (keysPressed) this.vehicle.update();
     }
 
     display() {
