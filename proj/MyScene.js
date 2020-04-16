@@ -32,6 +32,7 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
+        this.displayNormals = true;
         this.speedFactor = 1; //default value
         this.scaleFactor = 1;
 
@@ -50,6 +51,7 @@ class MyScene extends CGFscene {
         this.material.setTexture(this.earth);
     }
     initLights() {
+        this.setGlobalAmbientLight(0.5, 0.5, 0.5, 1.0);
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
@@ -67,6 +69,7 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
+        this.vehicle.update(t);
     }
     checkKeys(){
         var keysPressed = false;
@@ -74,11 +77,11 @@ class MyScene extends CGFscene {
         // Check for key codes e.g. in https://keycode.info/
 
         if (this.gui.isKeyPressed("KeyW")){
-            this.vehicle.accelerate(0.2*this.speedFactor);
+            this.vehicle.accelerate(0.1*this.speedFactor);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyS")){
-            this.vehicle.accelerate(-0.2*this.speedFactor);
+            this.vehicle.accelerate(-0.1*this.speedFactor);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyA")){
@@ -93,8 +96,6 @@ class MyScene extends CGFscene {
             this.vehicle.reset();
             keysPressed = true;
         }
-
-        if (keysPressed) this.vehicle.update();
     }
 
     display() {
@@ -117,18 +118,18 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        /*this.material.apply();
-        this.sphere.display();*/
-        this.cube.display();
+        this.material.apply();
+        //this.sphere.display();
         /*if(this.displayNormals){
             this.cylinder.enableNormalViz();
         }
         else{
             this.cylinder.disableNormalViz();
-        }
-        this.cylinder.display();*/
+        }*/
+        //this.cylinder.display();
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.vehicle.display();
+        this.cube.display();
 
         // ---- END Primitive drawing section
     }

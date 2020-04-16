@@ -14,6 +14,7 @@ class MyVehicle extends CGFobject {
         this.x = 0; //Position
         this.y = 0;
         this.z = 0;
+        this.time = Date.now();
     }
     initBuffers() {
         this.vertices = [];
@@ -76,7 +77,7 @@ class MyVehicle extends CGFobject {
         this.initNormalVizBuffers();
     }
 
-    update(){
+    update(t){
         this.x += this.speed * Math.sin(this.angle * Math.PI/180);
         this.z += this.speed * Math.cos(this.angle * Math.PI/180);
     }
@@ -86,7 +87,7 @@ class MyVehicle extends CGFobject {
     }
 
     accelerate(val){
-        this.speed = val;
+        this.speed += val;
     }
 
     reset(){
