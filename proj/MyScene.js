@@ -29,6 +29,7 @@ class MyScene extends CGFscene {
         this.sphere = new MySphere(this, 16, 8);
         this.cube = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this, 4, 8);
+        this.terrain = new MyTerrain(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -47,7 +48,6 @@ class MyScene extends CGFscene {
 
         //Texture
         this.earth = new CGFtexture(this, 'images/earth.jpg');
-
         this.material.setTexture(this.earth);
     }
     initLights() {
@@ -114,11 +114,11 @@ class MyScene extends CGFscene {
             this.axis.display();
 
         this.setDefaultAppearance();
+        this.lights[0].update();
 
         // ---- BEGIN Primitive drawing section
 
-        //This sphere does not have defined texture coordinates
-        this.material.apply();
+        //this.material.apply();
         //this.sphere.display();
         /*if(this.displayNormals){
             this.cylinder.enableNormalViz();
@@ -130,6 +130,7 @@ class MyScene extends CGFscene {
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.vehicle.display();
         this.cube.display();
+        //this.terrain.display(); 
 
         // ---- END Primitive drawing section
     }
