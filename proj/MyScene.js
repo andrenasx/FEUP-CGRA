@@ -31,6 +31,7 @@ class MyScene extends CGFscene {
         this.vehicle = new MyVehicle(this, 16, 8);
         this.terrain = new MyTerrain(this);
         this.quad2S = new MyQuad2S(this);
+        this.triangle2S = new MyTriangle2S(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -132,13 +133,20 @@ class MyScene extends CGFscene {
         // this.vehicle.display();
         // this.cube.display();
         //this.terrain.display();
-         if(this.displayNormals){
+         /*if(this.displayNormals){
             this.quad2S.enableNormalViz();
         }
         else{
             this.quad2S.disableNormalViz();
         }
-        this.quad2S.display();
+        this.quad2S.display();*/
+        if(this.displayNormals){
+            this.triangle2S.enableNormalViz();
+        }
+        else{
+            this.triangle2S.disableNormalViz();
+        }
+        this.triangle2S.display();
 
         // ---- END Primitive drawing section
     }
