@@ -7,16 +7,18 @@ class MyVehicle extends CGFobject {
         super(scene);
         this.slices = slices;
         this.stacks = stacks;
-        this.initBuffers();
+        //this.initBuffers();
+
+        this.sphere = new MySphere(this.scene, this.slices, this.stacks);
 
         this.angle = 0; //eixo YY
         this.speed = 0;
         this.x = 0; //Position
         this.y = 0;
         this.z = 0;
-        this.time = Date.now();
+        this.lastUpdate = 0;
     }
-    initBuffers() {
+    /*initBuffers() {
         this.vertices = [];
         this.indices = [];
         this.normals = [];
@@ -67,7 +69,7 @@ class MyVehicle extends CGFobject {
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
-    }
+    }*/
     
     updateBuffers(complexity){
         this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
@@ -78,8 +80,16 @@ class MyVehicle extends CGFobject {
     }
 
     update(t){
-        this.x += this.speed * Math.sin(this.angle * Math.PI/180);
-        this.z += this.speed * Math.cos(this.angle * Math.PI/180);
+        if (this.lastUpdate=0) this.lastUpdate = t;
+        var elapsedTime = t - this.lastUpdate;
+        this.lastUpdate = t;
+
+        this.x += (this.speed * Math.sin(this.angle * Math.PI/180))/*(elapsedTime/1000)*/;
+        this.z += (this.speed * Math.cos(this.angle * Math.PI/180))/*(elapsedTime/1000)*/;
+
+        console.log(this.speed);
+        console.log(this.x);
+        console.log(this.z);
     }
 
     turn(val){
@@ -107,9 +117,12 @@ class MyVehicle extends CGFobject {
         this.scene.translate(this.x, this.y, this.z);
         this.scene.rotate(this.angle*Math.PI/180, 0, 1, 0);
 
-        this.scene.translate(0, 0, -1);
-        this.scene.rotate(90*Math.PI/180, 1, 0, 0);
-        super.display();
+        //Balao
+        this.scene.pushMatrix()
+        this.scene.scale(0.5, 0.5, 1);
+        this.sphere.display();
+        this.scene.popMatrix();
+
         this.scene.popMatrix();
     }
 }
