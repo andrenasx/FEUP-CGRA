@@ -10,6 +10,9 @@ class MyVehicle extends CGFobject {
         //this.initBuffers();
 
         this.sphere = new MySphere(this.scene, this.slices, this.stacks);
+        this.cockpit = new MyCockpit(this.scene, this.slices, this.stacks);
+        this.engineR = new MyEngine(this.scene, this.slices, this.stacks);
+        this.engineL = new MyEngine(this.scene, this.slices, this.stacks);
 
         this.angle = 0; //eixo YY
         this.speed = 0;
@@ -87,9 +90,12 @@ class MyVehicle extends CGFobject {
         this.x += (this.speed * Math.sin(this.angle * Math.PI/180))/*(elapsedTime/1000)*/;
         this.z += (this.speed * Math.cos(this.angle * Math.PI/180))/*(elapsedTime/1000)*/;
 
-        console.log(this.speed);
+        this.engineL.rotateProp(this.speed*t);
+        this.engineR.rotateProp(this.speed*t);
+
+        /*console.log(this.speed);
         console.log(this.x);
-        console.log(this.z);
+        console.log(this.z);*/
     }
 
     turn(val){
@@ -118,9 +124,25 @@ class MyVehicle extends CGFobject {
         this.scene.rotate(this.angle*Math.PI/180, 0, 1, 0);
 
         //Balao
-        this.scene.pushMatrix()
+        this.scene.pushMatrix();
         this.scene.scale(0.5, 0.5, 1);
         this.sphere.display();
+        this.scene.popMatrix();
+
+        //Cockpit
+        this.scene.pushMatrix();
+
+        this.scene.translate(0, -0.55, -0.3);
+        this.cockpit.display();
+
+        //Engines
+        this.scene.pushMatrix();
+        this.scene.translate(0.15, 0, -0.02);
+        this.engineL.display();
+        this.scene.translate(-0.30,0,0);
+        this.engineR.display();
+        this.scene.popMatrix();
+
         this.scene.popMatrix();
 
         this.scene.popMatrix();
