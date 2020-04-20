@@ -32,6 +32,7 @@ class MyScene extends CGFscene {
         this.terrain = new MyTerrain(this);
         this.quad2S = new MyQuad2S(this);
         this.triangle2S = new MyTriangle2S(this);
+        this.rudder = new MyRudder(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -98,6 +99,8 @@ class MyScene extends CGFscene {
             this.vehicle.reset();
             keysPressed = true;
         }
+
+        if(!keysPressed) this.vehicle.turn(0);
     }
 
     display() {
@@ -131,6 +134,7 @@ class MyScene extends CGFscene {
         //this.cylinder.display();
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.vehicle.display();
+        //this.rudder.display();
         this.cube.display();
         //this.terrain.display();
         

@@ -13,6 +13,8 @@ class MyVehicle extends CGFobject {
         this.cockpit = new MyCockpit(this.scene, this.slices, this.stacks);
         this.engineR = new MyEngine(this.scene, this.slices, this.stacks);
         this.engineL = new MyEngine(this.scene, this.slices, this.stacks);
+        this.rudderH = new MyRudder(this.scene);
+        this.rudderV = new MyRudder(this.scene);
 
         this.angle = 0; //eixo YY
         this.speed = 0;
@@ -100,6 +102,7 @@ class MyVehicle extends CGFobject {
 
     turn(val){
         this.angle += val;
+        this.rudderV.rotRudder(val*this.speed*3);
     }
 
     accelerate(val){
@@ -117,7 +120,7 @@ class MyVehicle extends CGFobject {
     display(){
         this.scene.setDiffuse(0,0,1);
         this.scene.setSpecular(0, 0, 0, 1);
-        this.scene.setAmbient(0, 0, 0, 1);
+        this.scene.setAmbient(0, 0, 0.5, 1);
 
         this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
@@ -131,7 +134,6 @@ class MyVehicle extends CGFobject {
 
         //Cockpit
         this.scene.pushMatrix();
-
         this.scene.translate(0, -0.55, -0.3);
         this.cockpit.display();
 
@@ -142,9 +144,36 @@ class MyVehicle extends CGFobject {
         this.scene.translate(-0.30,0,0);
         this.engineR.display();
         this.scene.popMatrix();
-
         this.scene.popMatrix();
 
+        //Rudders
+        this.scene.pushMatrix();
+
+            //horizontal
+        this.scene.pushMatrix();
+        this.scene.translate(0.4, 0, -0.4);
+        this.rudderH.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(-0.4, 0, -0.4);
+        this.rudderH.display();
+        this.scene.popMatrix();
+
+            //Vertical
+        this.scene.pushMatrix();
+        this.scene.translate(0,0.4,-0.4);
+        this.scene.rotate(Math.PI/2, 0,0,1);
+        this.rudderV.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0,-0.4,-0.4);
+        this.scene.rotate(Math.PI/2, 0,0,1);
+        this.rudderV.display();
+        this.scene.popMatrix();
+
+        this.scene.popMatrix();
         this.scene.popMatrix();
     }
 }
