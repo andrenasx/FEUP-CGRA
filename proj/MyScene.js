@@ -30,9 +30,6 @@ class MyScene extends CGFscene {
         this.cube = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this, 16, 8);
         this.terrain = new MyTerrain(this);
-        this.quad2S = new MyQuad2S(this);
-        this.triangle2S = new MyTriangle2S(this);
-        this.rudder = new MyRudder(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -80,11 +77,11 @@ class MyScene extends CGFscene {
         // Check for key codes e.g. in https://keycode.info/
 
         if (this.gui.isKeyPressed("KeyW")){
-            this.vehicle.accelerate(0.1*this.speedFactor);
+            this.vehicle.accelerate(this.speedFactor);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyS")){
-            this.vehicle.accelerate(-0.1*this.speedFactor);
+            this.vehicle.accelerate(-this.speedFactor);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyA")){
@@ -132,11 +129,13 @@ class MyScene extends CGFscene {
             this.cylinder.disableNormalViz();
         }*/
         //this.cylinder.display();
+        this.pushMatrix();
+        this.translate(0,10,0);
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.vehicle.display();
-        //this.rudder.display();
+        this.popMatrix();
         this.cube.display();
-        //this.terrain.display();
+        this.terrain.display();
         
 
         // ---- END Primitive drawing section
