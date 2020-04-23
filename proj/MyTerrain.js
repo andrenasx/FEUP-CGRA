@@ -23,7 +23,11 @@ class MyTerrain extends CGFobject {
         this.scene.setActiveShader(this.terrainShader);
         this.terrainTex.bind(1);
         this.terrainMap.bind(2);
+        this.scene.pushMatrix();
+        this.scene.scale(50,1,50);
+        this.scene.rotate(-Math.PI/2, 1,0,0);
         this.plane.display();
-        this.scene.setActiveShader(this.defaultShader);
+        this.scene.popMatrix();
+        this.scene.setActiveShader(this.scene.defaultShader);
     }
 }
