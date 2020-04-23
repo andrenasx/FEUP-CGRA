@@ -46,7 +46,7 @@ class MyVehicle extends CGFobject {
 
     turn(val){
         this.angle += val;
-        this.rudderV.rotRudder(val*this.speed*3);
+        this.rudderV.rotRudder(val*this.speed*0.2);
     }
 
     accelerate(val){
