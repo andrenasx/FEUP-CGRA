@@ -21,7 +21,15 @@ class MyVehicle extends CGFobject {
         this.x = 0; //Position
         this.y = 0;
         this.z = 0;
-        this.lastUpdate = 0;
+
+        this.automatic = false; //Variables for Automatic Pilot
+        this.slope = 0;
+        this.x_center = 0;
+        this.z_center = 0;
+        this.autopilotTime = 0;
+        this.radius = 0;
+
+        this.lastUpdate = 0; //Moving per second
     }
     
     updateBuffers(complexity){
@@ -37,8 +45,10 @@ class MyVehicle extends CGFobject {
         var elapsedTime = t - this.lastUpdate;
         this.lastUpdate = t;
 
-        this.x += (this.speed * Math.sin(this.angle * Math.PI/180))*(elapsedTime/1000.0);
-        this.z += (this.speed * Math.cos(this.angle * Math.PI/180))*(elapsedTime/1000.0);
+        if(!this.automatic){
+            this.x += (this.speed * Math.sin(this.angle * Math.PI/180))*(elapsedTime/1000.0);
+            this.z += (this.speed * Math.cos(this.angle * Math.PI/180))*(elapsedTime/1000.0);
+        }
 
         this.engineL.rotateProp(this.speed*t);
         this.engineR.rotateProp(this.speed*t);
@@ -51,6 +61,7 @@ class MyVehicle extends CGFobject {
 
     accelerate(val){
         this.speed += val;
+        if(this.speed<0) this.speed=0;
     }
 
     reset(){
@@ -62,9 +73,10 @@ class MyVehicle extends CGFobject {
     }
 
     display(){
-        this.scene.setDiffuse(0,0,1);
+        /*this.scene.setDiffuse(0,0,1);
         this.scene.setSpecular(0, 0, 0, 1);
-        this.scene.setAmbient(0, 0, 0.5, 1);
+        this.scene.setAmbient(0.5, 0.5, 0.5, 1);*/
+        this.scene.setAmbient(1, 1, 1, 1);
 
         this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
@@ -72,7 +84,9 @@ class MyVehicle extends CGFobject {
 
         //Balao
         this.scene.pushMatrix();
+        
         this.scene.scale(0.5, 0.5, 1);
+        this.scene.rotate(Math.PI/2, 0,1,0);
         this.sphere.display();
         this.scene.popMatrix();
 

@@ -49,6 +49,9 @@ class MyScene extends CGFscene {
         //Texture
         this.earth = new CGFtexture(this, 'images/earth.jpg');
         this.material.setTexture(this.earth);
+
+        this.nemo = new CGFtexture(this, 'textures/nemogroovy.jpg');
+        this.material.setTexture(this.nemo);
     }
     initLights() {
         this.setGlobalAmbientLight(0.5, 0.5, 0.5, 1.0);
@@ -96,6 +99,10 @@ class MyScene extends CGFscene {
             this.vehicle.reset();
             keysPressed = true;
         }
+        if (this.gui.isKeyPressed("KeyP")){
+            this.vehicle.setAutomatic();
+            keysPressed = true;
+        }
 
         if(!keysPressed) this.vehicle.turn(0);
     }
@@ -129,13 +136,14 @@ class MyScene extends CGFscene {
             this.cylinder.disableNormalViz();
         }*/
         //this.cylinder.display();
+        this.cube.display();
+        this.terrain.display();
         this.pushMatrix();
         this.translate(0,10,0);
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+        this.material.apply();
         this.vehicle.display();
         this.popMatrix();
-        this.cube.display();
-        this.terrain.display();
         
 
         // ---- END Primitive drawing section
