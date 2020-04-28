@@ -32,7 +32,7 @@ class MyScene extends CGFscene {
             this.sphere = new MySphere(this, 16, 8),
             this.cube = new MyCubeMap(this)
         ]
-
+        this.billboard = new MyBillboard(this);
         this.objectsList={
             'Sphere':0,
             'Cylinder':1,
@@ -192,6 +192,7 @@ class MyScene extends CGFscene {
             this.supplies[i].display();
         }
 
+        this.billboard.display();
         // ---- END Primitive drawing section
     }
 }
