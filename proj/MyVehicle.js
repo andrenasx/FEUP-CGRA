@@ -15,6 +15,7 @@ class MyVehicle extends CGFobject {
         this.engineL = new MyEngine(this.scene, this.slices, this.stacks);
         this.rudderH = new MyRudder(this.scene);
         this.rudderV = new MyRudder(this.scene);
+        this.flag = new MyFlag(this.scene);
 
         this.angle = 0; //eixo YY
         this.speed = 0;
@@ -30,6 +31,16 @@ class MyVehicle extends CGFobject {
         this.radius = 0;
 
         this.lastUpdate = 0; //Moving per second
+    }
+
+    initNormalVizBuffers(){
+        this.flag.initNormalVizBuffers();
+        this.rudderH.initNormalVizBuffers();
+        this.rudderV.initNormalVizBuffers();
+        this.engineL.initNormalVizBuffers();
+        this.engineR.initNormalVizBuffers();
+        this.cockpit.initNormalVizBuffers();
+        this.sphere.initNormalVizBuffers();
     }
     
     updateBuffers(complexity){
@@ -132,6 +143,15 @@ class MyVehicle extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.popMatrix();
+
+        //Flag
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, -1.8);
+        this.flag.display();
+        this.scene.popMatrix();
+
         this.scene.popMatrix();
     }
+
+    
 }
