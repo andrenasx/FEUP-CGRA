@@ -10,7 +10,7 @@ class MyTerrain extends CGFobject {
     init(scene){
         //Texture
         this.terrainTex = new CGFtexture(scene, "textures/terrain.jpg");
-        this.terrainMap = new CGFtexture(scene, "textures/heightmap.jpg");
+        this.terrainMap = new CGFtexture(scene, "textures/heightmapcenter.jpg");
         
         //Shader
         this.terrainShader = new CGFshader(scene.gl, "shaders/terrain.vert", "shaders/terrain.frag");
