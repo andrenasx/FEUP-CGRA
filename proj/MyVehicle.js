@@ -63,6 +63,7 @@ class MyVehicle extends CGFobject {
 
         this.engineL.rotateProp(this.speed*t);
         this.engineR.rotateProp(this.speed*t);
+        this.flag.update(this.speed, t);
     }
 
     turn(val){
@@ -120,24 +121,24 @@ class MyVehicle extends CGFobject {
 
             //horizontal
         this.scene.pushMatrix();
-        this.scene.translate(0.4, 0, -0.4);
+        this.scene.translate(0.4, 0, -0.3);
         this.rudderH.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(-0.4, 0, -0.4);
+        this.scene.translate(-0.4, 0, -0.3);
         this.rudderH.display();
         this.scene.popMatrix();
 
             //Vertical
         this.scene.pushMatrix();
-        this.scene.translate(0,0.4,-0.4);
+        this.scene.translate(0,0.4,-0.3);
         this.scene.rotate(Math.PI/2, 0,0,1);
         this.rudderV.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0,-0.4,-0.4);
+        this.scene.translate(0,-0.4,-0.3);
         this.scene.rotate(Math.PI/2, 0,0,1);
         this.rudderV.display();
         this.scene.popMatrix();
