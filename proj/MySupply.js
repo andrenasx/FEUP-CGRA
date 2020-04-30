@@ -13,12 +13,15 @@ class MySupply extends CGFobject {
 	constructor(scene) {
         super(scene);
 
-        this.quad = new MyQuad(this.scene);
-        this.initTexture(scene);
+        this.supplyDropping = new MySupplyDropping(this.scene);
+        /*this.quad = new MyQuad(this.scene);
+        this.initTexture(scene);*/
         this.state = SupplyStates.INACTIVE;
         this.x = 0;
         this.y = 10;
         this.z = 0;
+
+        this.lastUpdate = 0; //Moving per second
     }
 
     initTexture(scene){
@@ -37,8 +40,7 @@ class MySupply extends CGFobject {
             var elapsedTime = t - this.lastUpdate;
             this.lastUpdate = t;
 
-            this.y -= 0.1/*(10/3)*(elapsedTime/1000)*/;
-            console.log(this.y);
+            this.y -= (10/3)*(elapsedTime/1000);
 
             if(this.y <=0.5){
                 this.land();
@@ -55,67 +57,20 @@ class MySupply extends CGFobject {
         this.state = SupplyStates.FALLING;
         this.x = x;
         this.z = z;
-
-        console.log(this.x);
-        console.log(this.z);
     }
 
     display(){
         if(this.state == SupplyStates.FALLING){
-        this.scene.pushMatrix();
-        this.tex.apply();
-        
-        this.scene.translate(this.x, this.y, this.z);
-
-        //Front
-        this.scene.pushMatrix();
-        this.scene.translate(0, 0, 0.5);
-        this.quad.display();
-        this.scene.popMatrix();
-       
-        //Back
-        this.scene.pushMatrix();
-        this.scene.translate(0, 0, -0.5);
-        this.scene.rotate(Math.PI, 0,1,0);
-        this.quad.display();
-        this.scene.popMatrix();
-
-        //Right
-        this.scene.pushMatrix();
-        this.scene.translate(0.5, 0, 0);
-        this.scene.rotate(Math.PI/2, 0,1,0);
-        this.quad.display();
-        this.scene.popMatrix();
-
-        //Left
-        this.scene.pushMatrix();
-        this.scene.translate(-0.5, 0, 0);
-        this.scene.rotate(-Math.PI/2, 0,1,0);
-        this.quad.display();
-        this.scene.popMatrix();
-
-        //Top
-        this.scene.pushMatrix();
-        this.scene.translate(0, 0.5, 0);
-        this.scene.rotate(-Math.PI/2, 1,0,0);
-        this.quad.display();
-        this.scene.popMatrix();
-
-        //Bottom
-        this.scene.pushMatrix();
-        this.scene.translate(0, -0.5, 0);
-        this.scene.rotate(Math.PI/2, 1,0,0);
-        this.quad.display();
-        this.scene.popMatrix();
-
-        this.scene.popMatrix();
+            this.scene.pushMatrix();
+            this.scene.translate(this.x, this.y, this.z);
+            this.supplyDropping.display();
+            this.scene.popMatrix();
         }
-    }
-
-    enableNormalViz(){
-        this.quad.enableNormalViz()
-    }
-    disableNormalViz(){
-        this.quad.disableNormalViz();
+        else if(this.state == SupplyStates.LANDED){
+            this.scene.pushMatrix();
+            this.scene.translate(this.x, 0.5, this.z);
+            this.supplyDropping.display();
+            this.scene.popMatrix();
+        }
     }
 }
