@@ -123,6 +123,12 @@ class MyScene extends CGFscene {
         }
         if (this.gui.isKeyPressed("KeyR")){
             this.vehicle.reset();
+            this.nSuppliesDelivered=0;
+            for (var i=0 ; i<5; i++){
+                this.supplies[i].state = SupplyStates.INACTIVE;
+                this.supplies[i].y=10;
+                this.supplies[i].lastUpdate=0;
+            }
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyP")){
