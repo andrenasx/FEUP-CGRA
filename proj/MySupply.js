@@ -14,6 +14,7 @@ class MySupply extends CGFobject {
         super(scene);
 
         this.supplyDropping = new MySupplyDropping(this.scene);
+        this.supplyLanded = new MySupplyLanded(this.scene);
         /*this.quad = new MyQuad(this.scene);
         this.initTexture(scene);*/
         this.state = SupplyStates.INACTIVE;
@@ -69,7 +70,7 @@ class MySupply extends CGFobject {
         else if(this.state == SupplyStates.LANDED){
             this.scene.pushMatrix();
             this.scene.translate(this.x, 0.5, this.z);
-            this.supplyDropping.display();
+            this.supplyLanded.display();
             this.scene.popMatrix();
         }
     }
