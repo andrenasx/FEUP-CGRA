@@ -32,7 +32,7 @@ class MyScene extends CGFscene {
             this.sphere = new MySphere(this, 16, 8),
             this.cube = new MyCubeMap(this)
         ]
-        this.billboard = new MyBillboard(this);
+        //this.billboard = new MyBillboard(this);
         this.objectsList={
             'Sphere':0,
             'Cylinder':1,
@@ -56,7 +56,7 @@ class MyScene extends CGFscene {
         for (var i=0; i<5; i++){
             this.supplies.push(new MySupply(this));
         }
-
+        this.billboard = new MyBillboard(this);
         //Material
         this.material=new CGFappearance(this);
         this.material.setAmbient(0.1,0.1,0.1,1);
@@ -129,6 +129,7 @@ class MyScene extends CGFscene {
                 this.supplies[i].y=10;
                 this.supplies[i].lastUpdate=0;
             }
+            this.billboard.resetBillboard();
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyP")){
@@ -140,6 +141,7 @@ class MyScene extends CGFscene {
             this.supplies[this.nSuppliesDelivered].drop(this.vehicle.x, this.vehicle.z);
             this.nSuppliesDelivered+=1;
             console.log(this.nSuppliesDelivered);
+            this.billboard.updateBillboard();
         }
 
         if(!keysPressed) this.vehicle.turn(0);
@@ -200,5 +202,6 @@ class MyScene extends CGFscene {
 
         this.billboard.display();
         // ---- END Primitive drawing section
+        this.setActiveShader(this.defaultShader);
     }
 }

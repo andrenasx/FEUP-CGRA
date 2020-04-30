@@ -2,13 +2,13 @@
 precision highp float;
 #endif
 
-varying vec4 normal;
 varying vec4 coords;
+varying vec4 normal;
 
-uniform int supplies_dropped;
+uniform int dropps;
 
-void main(){
-    float limit = -0.6 + (1.2/5.0) * float(supplies_dropped);
+void main() {
+    float limit = -0.6 + (1.2 / 5.0) * float(dropps);
 
     if (coords.x > limit)
         gl_FragColor = vec4(0.1, 0.1, 0.1, 1);
