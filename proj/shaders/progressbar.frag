@@ -5,10 +5,10 @@ precision highp float;
 varying vec4 coords;
 varying vec4 normal;
 
-uniform int dropps;
+uniform int drops;
 
 void main() {
-    float limit = -0.6 + (1.2 / 5.0) * float(dropps);
+    float limit = -0.6 + (1.2 / 5.0) * float(drops);
 
     if (coords.x > limit)
         gl_FragColor = vec4(0.1, 0.1, 0.1, 1);

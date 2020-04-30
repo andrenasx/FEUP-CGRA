@@ -52,6 +52,7 @@ class MySupply extends CGFobject {
     land(){
         this.y=0.5;
         this.state = SupplyStates.LANDED;
+        this.scene.billboard.update();
     }
     
     drop(x,z){

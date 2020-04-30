@@ -32,11 +32,11 @@ class MyBillboard extends CGFobject {
         this.support.setShininess(10.0);
     }
 
-    updateBillboard() {
+    update() {
         this.progressShader.setUniformsValues({ drops: ++this.dropped});
     }
 
-    resetBillboard() {
+    reset() {
         this.dropped = 0;
         this.progressShader.setUniformsValues({ drops: 0 });
     }
@@ -74,7 +74,7 @@ class MyBillboard extends CGFobject {
 
         this.scene.setActiveShader(this.progressShader);
         this.scene.pushMatrix();
-        this.scene.translate(0, -0.3, 0);
+        this.scene.translate(0, -0.3, 0.01);
         this.scene.scale(1.5, 0.2, 1);
         this.progressbar.display();
         this.scene.popMatrix();
