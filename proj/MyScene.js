@@ -178,7 +178,7 @@ class MyScene extends CGFscene {
         if(this.displayTerrain){
             this.terrain.display();
         }
-        
+        //this.billboard.display();
         if(this.displayVehicle){
             this.pushMatrix();
             this.translate(0,10,0);
