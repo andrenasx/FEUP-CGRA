@@ -20,15 +20,12 @@ class MyVehicle extends CGFobject {
         this.angle = 0; //eixo YY
         this.speed = 0;
         this.x = 0; //Position
-        this.y = 0;
+        this.y = 10;
         this.z = 0;
 
-        this.automatic = false; //Variables for Automatic Pilot
-        this.slope = 0;
+        this.auto_pilot = false; //Variables for Automatic Pilot
         this.x_center = 0;
         this.z_center = 0;
-        this.autopilotTime = 0;
-        this.radius = 0;
 
         this.lastUpdate = 0; //Moving per second
     }
@@ -53,21 +50,29 @@ class MyVehicle extends CGFobject {
 
     update(t){
         if (this.lastUpdate==0) this.lastUpdate = t;
-        var elapsedTime = t - this.lastUpdate;
+        var elapsedTime = (t - this.lastUpdate)/1000.0;
         this.lastUpdate = t;
 
-        if(!this.automatic){
-            this.x += (this.speed * Math.sin(this.angle * Math.PI/180))*(elapsedTime/1000.0);
-            this.z += (this.speed * Math.cos(this.angle * Math.PI/180))*(elapsedTime/1000.0);
+        if(!this.auto_pilot){
+            this.x += (this.speed * Math.sin(this.angle * Math.PI/180))*(elapsedTime);
+            this.z += (this.speed * Math.cos(this.angle * Math.PI/180))*(elapsedTime);
+            this.engineL.rotateProp(this.speed*t);
+            this.engineR.rotateProp(this.speed*t);
+        }
+        else {
+            this.x = this.x_center - 5*Math.cos(this.angle * Math.PI / 180);
+            this.z = this.z_center + 5*Math.sin(this.angle * Math.PI / 180);
+            this.turn(elapsedTime * 360/5);
+            this.engineL.rotateProp(20);
+            this.engineR.rotateProp(20);
         }
 
-        this.engineL.rotateProp(this.speed*t);
-        this.engineR.rotateProp(this.speed*t);
-        this.flag.update(this.speed, t);
+        //this.flag.update(this.speed, t);
     }
 
     turn(val){
         this.angle += val;
+        this.angle %= 360;
         this.rudderV.rotRudder(val*this.speed*0.2);
     }
 
@@ -78,10 +83,20 @@ class MyVehicle extends CGFobject {
 
     reset(){
         this.x = 0;
-        this.y = 0;
         this.z = 0;
         this.angle = 0;
         this.speed = 0;
+        this.auto_pilot = false;
+        this.x_center = 0;
+        this.z_center = 0;
+        this.lastUpdate = 0;
+    }
+
+    autoPilot(){
+        this.auto_pilot = true;
+        var perpendicularAngle = (this.angle + 90) * Math.PI / 180;
+        this.x_center = this.x + 5*Math.sin(perpendicularAngle);
+        this.z_center = this.z + 5*Math.cos(perpendicularAngle);
     }
 
     display(){

@@ -106,19 +106,19 @@ class MyScene extends CGFscene {
         // Check for key codes e.g. in https://keycode.info/
 
         if (this.gui.isKeyPressed("KeyW")){
-            this.vehicle.accelerate(this.speedFactor);
+            if(!this.vehicle.auto_pilot)    this.vehicle.accelerate(this.speedFactor);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyS")){
-            this.vehicle.accelerate(-this.speedFactor);
+            if(!this.vehicle.auto_pilot)    this.vehicle.accelerate(-this.speedFactor);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyA")){
-            this.vehicle.turn(10);
+            if(!this.vehicle.auto_pilot)    this.vehicle.turn(10);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyD")){
-            this.vehicle.turn(-10);
+            if(!this.vehicle.auto_pilot)    this.vehicle.turn(-10);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyR")){
@@ -133,7 +133,7 @@ class MyScene extends CGFscene {
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyP")){
-            this.vehicle.setAutomatic();
+            if(!this.vehicle.auto_pilot)    this.vehicle.autoPilot();
             keysPressed = true;
         }
 
@@ -143,7 +143,7 @@ class MyScene extends CGFscene {
             console.log(this.nSuppliesDelivered);
         }
 
-        if(!keysPressed) this.vehicle.turn(0);
+        if(!keysPressed && !this.vehicle.auto_pilot) this.vehicle.turn(0);
     }
 
     display() {
@@ -188,7 +188,6 @@ class MyScene extends CGFscene {
         //this.billboard.display();
         if(this.displayVehicle){
             this.pushMatrix();
-            this.translate(0,10,0);
             this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
             this.material.apply();
             this.vehicle.display();

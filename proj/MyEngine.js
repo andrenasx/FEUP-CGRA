@@ -14,7 +14,7 @@ class MyEngine extends CGFobject {
     }
 
     rotateProp(ang){
-        this.angle = ang;
+        this.angle = ang*Math.PI/180;
     }
 
     display(){
@@ -25,7 +25,7 @@ class MyEngine extends CGFobject {
 
         this.scene.pushMatrix();
         this.scene.translate(0,0,-0.1);
-        this.scene.rotate(this.angle*Math.PI/180, 0,0,1);
+        this.scene.rotate(this.angle, 0,0,1);
         this.scene.scale(0.015,0.15,0);
         this.quad.display();
         this.scene.popMatrix();
