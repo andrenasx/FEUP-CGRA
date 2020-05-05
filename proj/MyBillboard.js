@@ -8,6 +8,7 @@ class MyBillboard extends CGFobject {
         this.board = new MyPlane(this.scene, 40);
         this.back = new MyPlane(this.scene, 40);
         this.supports = new MyPlane(this.scene, 30);
+        this.supports_back = new MyPlane(this.scene, 30);
         this.progressbar = new MyPlane(this.scene, 30);
         
         this.progressShader = new CGFshader(scene.gl, 'shaders/progressbar.vert', 'shaders/progressbar.frag');
@@ -24,6 +25,8 @@ class MyBillboard extends CGFobject {
         this.front.setDiffuse(0.5, 0.5, 0.5, 1);
         this.front.setSpecular(0.1, 0.1, 0.1, 1);
         this.front.setShininess(10.0);
+        this.front.loadTexture('textures/billboard.png');
+        this.front.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.support = new CGFappearance(this.scene);
         this.support.setAmbient(0.1, 0.1, 0.1, 1);
@@ -43,21 +46,23 @@ class MyBillboard extends CGFobject {
 
 	display(){
         this.scene.pushMatrix();
-        this.scene.translate(5,8,5);
-        this.scene.rotate(45*Math.PI/180.0, 0, 1, 0);
+        this.scene.translate(5, 3, -5);
         
+        //Board
         this.front.apply();
         this.scene.pushMatrix();
         this.scene.scale(2, 1, 1);
         this.board.display();
         this.scene.popMatrix();
 
+        //Back of the board
         this.scene.pushMatrix();
         this.scene.rotate(-180.0*Math.PI/180.0, 0, 1, 0);
         this.scene.scale(2, 1, 1);
         this.back.display();
         this.scene.popMatrix();
 
+        //Supports for the board
         this.support.apply();
         this.scene.pushMatrix();
         this.scene.translate(-0.95, -1, 0);
@@ -72,6 +77,24 @@ class MyBillboard extends CGFobject {
         this.supports.display();
         this.scene.popMatrix();
 
+        //Backs of the supports
+        this.support.apply();
+        this.scene.pushMatrix();
+        this.scene.rotate(-180.0*Math.PI/180.0, 0, 1, 0);
+        this.scene.translate(-0.95, -1, 0);
+        this.scene.scale(0.1, 1, 0);
+        this.supports_back.display();
+        this.scene.popMatrix();
+
+        this.support.apply();
+        this.scene.pushMatrix();
+        this.scene.rotate(-180.0*Math.PI/180.0, 0, 1, 0);
+        this.scene.translate(0.95, -1, 0);
+        this.scene.scale(0.1, 1, 0);
+        this.supports_back.display();
+        this.scene.popMatrix();
+
+        //Progress Bar
         this.scene.setActiveShader(this.progressShader);
         this.scene.pushMatrix();
         this.scene.translate(0, -0.3, 0.01);
