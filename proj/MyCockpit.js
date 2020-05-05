@@ -10,9 +10,20 @@ class MyCockpit extends CGFobject {
 
         this.sphere = new MySphere(this.scene, this.slices, this.stacks);
         this.cylinder = new MyCylinder(this.scene, this.slices);
+        this.initTexture(scene);
+    }
+
+    initTexture(scene){
+        this.white = new CGFappearance(scene);
+        this.white.setAmbient(0.9, 0.9, 0.9, 1);
+        this.white.setDiffuse(0.0, 0.0, 0.0, 1);
+        this.white.setSpecular(0.0, 0.0, 0.0, 1);
+        this.white.setShininess(10.0);
     }
 
     display(){
+        this.white.apply();
+        
         //Main
         this.scene.pushMatrix();
         this.scene.scale(0.1,0.1,0.6);

@@ -11,6 +11,24 @@ class MyRudder extends CGFobject {
         this.quad2S.initBuffers();
         this.triangle2S.initBuffers();
         this.angle = 0;
+
+        this.initTexture(scene);
+    }
+
+    initTexture(scene){
+        this.rudder = new CGFappearance(scene);
+        this.rudder.setAmbient(0.9, 0.9, 0.9, 1);
+        this.rudder.setDiffuse(0.0, 0.0, 0.0, 1);
+        this.rudder.setSpecular(0.0, 0.0, 0.0, 1);
+        this.rudder.setShininess(10.0);
+        this.rudder.loadTexture('textures/rudder.png');
+        this.rudder.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
+        this.t = new CGFappearance(scene);
+        this.t.setAmbient(0.9, 0.9, 0.9, 1);
+        this.t.setDiffuse(0.0, 0.0, 0.0, 1);
+        this.t.setSpecular(0.0, 0.0, 0.0, 1);
+        this.t.setShininess(10.0);
     }
     
     rotRudder(ang){
@@ -26,10 +44,12 @@ class MyRudder extends CGFobject {
         this.scene.scale(0.3, 1, 0.3);
         this.scene.rotate(Math.PI/2, 1,0,0);
         
+        this.rudder.apply();
         this.quad2S.display();
 
         this.scene.pushMatrix();
         this.scene.translate(0, 0.5, 0);
+        this.t.apply();
         this.triangle2S.display();
         this.scene.popMatrix();
 

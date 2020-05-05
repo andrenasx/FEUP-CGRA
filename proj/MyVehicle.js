@@ -28,16 +28,18 @@ class MyVehicle extends CGFobject {
         this.z_center = 0;
 
         this.lastUpdate = 0; //Moving per second
+
+        this.initTexture(scene);
     }
 
-    initNormalVizBuffers(){
-        this.flag.initNormalVizBuffers();
-        this.rudderH.initNormalVizBuffers();
-        this.rudderV.initNormalVizBuffers();
-        this.engineL.initNormalVizBuffers();
-        this.engineR.initNormalVizBuffers();
-        this.cockpit.initNormalVizBuffers();
-        this.sphere.initNormalVizBuffers();
+    initTexture(scene){
+        this.blimp = new CGFappearance(scene);
+        this.blimp.setAmbient(0.9, 0.9, 0.9, 1);
+        this.blimp.setDiffuse(0.0, 0.0, 0.0, 1);
+        this.blimp.setSpecular(0.0, 0.0, 0.0, 1);
+        this.blimp.setShininess(10.0);
+        this.blimp.loadTexture('textures/blimp.png');
+        this.blimp.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
     }
     
     updateBuffers(complexity){
@@ -112,6 +114,7 @@ class MyVehicle extends CGFobject {
         //Balao
         this.scene.pushMatrix();
         
+        this.blimp.apply();
         this.scene.scale(0.5, 0.5, 1);
         this.scene.rotate(Math.PI/2, 0,1,0);
         this.sphere.display();

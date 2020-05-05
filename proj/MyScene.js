@@ -57,6 +57,7 @@ class MyScene extends CGFscene {
             this.supplies.push(new MySupply(this));
         }
         this.billboard = new MyBillboard(this);
+
         //Material
         this.material=new CGFappearance(this);
         this.material.setAmbient(0.1,0.1,0.1,1);
@@ -69,9 +70,6 @@ class MyScene extends CGFscene {
         //Texture
         this.earth = new CGFtexture(this, 'images/earth.jpg');
         this.material.setTexture(this.earth);
-
-        this.nemo = new CGFtexture(this, 'textures/nemogroovy.jpg');
-        this.material.setTexture(this.nemo);
     }
     initLights() {
         this.setGlobalAmbientLight(0.5, 0.5, 0.5, 1.0);
