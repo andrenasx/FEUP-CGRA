@@ -1,6 +1,6 @@
 
 /**
- * MyQuad
+ * MyFlag
  * @constructor
  * @param scene - Reference to MyScene object
  */
@@ -8,12 +8,12 @@ class MyFlag extends CGFobject {
 	constructor(scene) {
         super(scene);
         this.flag1 = new MyPlane(this.scene, 15);
-        //this.flag2 = new MyPlane(this.scene, 15);
+        this.flag2 = new MyPlane(this.scene, 15);
         this.support1 = new MyQuad2S(this.scene);
         this.support2 = new MyQuad2S(this.scene);
 
         //Flag texture
-        this.texture = new CGFtexture(this.scene, 'textures/nemo.jpg')
+        this.texture = new CGFtexture(this.scene, 'textures/nemo.jpg');
         
         //Movement Shaders
         this.shaderleft=new CGFshader(this.scene.gl, "shaders/flagleft.vert", "shaders/flag.frag");
@@ -41,6 +41,7 @@ class MyFlag extends CGFobject {
     }
 	
 	display(){
+        this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.pushMatrix();
         this.scene.translate(0,-0.2,0.47);
         this.scene.rotate(80.0*Math.PI/180.0,1,0,0);
@@ -73,7 +74,7 @@ class MyFlag extends CGFobject {
         this.scene.scale(1, 0.6, 1);
         this.scene.translate(0, 0, -0.5);
         this.scene.rotate(-90*Math.PI/180, 0, 1, 0);
-        this.flag1.display();
+        this.flag2.display();
         this.scene.popMatrix();
 
         this.scene.setActiveShader(this.scene.defaultShader);
