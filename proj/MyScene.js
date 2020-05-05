@@ -39,6 +39,12 @@ class MyScene extends CGFscene {
             'CubeMap':2
         }
 
+        this.landscape = 0;
+        this.landscapeList = {
+            'Default':0,
+            'Mountain':1
+        }
+
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayNormals = false;
@@ -89,6 +95,9 @@ class MyScene extends CGFscene {
     }
     updateObject(){
         this.objects[this.currentObject];
+    }
+    updateLandscape(){
+        this.cube.updateTexture();
     }
     // called periodically (as per setUpdatePeriod() in init())
     update(t){

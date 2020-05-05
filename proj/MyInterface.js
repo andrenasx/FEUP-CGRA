@@ -21,6 +21,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayNormals').name('Display Normals');
         this.gui.add(this.scene, 'displayObject').name('Display Object');
         this.gui.add(this.scene, 'currentObject',this.scene.objectsList).onChange(this.scene.updateObject.bind(this.scene)).name('Object');
+        this.gui.add(this.scene, 'landscape',this.scene.landscapeList).onChange(this.scene.updateLandscape.bind(this.scene)).name('Landscape');
         //this.gui.add(this.scene,'displayCubeMap').name('Display CubeMap');
         this.gui.add(this.scene,'displayTerrain').name('Display Terrain');
         //Slider element in GUI
