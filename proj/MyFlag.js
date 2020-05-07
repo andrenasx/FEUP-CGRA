@@ -44,7 +44,7 @@ class MyFlag extends CGFobject {
 	display(){
         this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.pushMatrix();
-        this.scene.translate(0,-0.2,0.47);
+        this.scene.translate(0,-0.2,0.5);
         this.scene.rotate(80.0*Math.PI/180.0,1,0,0);
         this.scene.rotate(90.0*Math.PI/180.0,0,1,0);
         this.scene.scale(0.025,1,1);
@@ -52,7 +52,7 @@ class MyFlag extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0,0.2,0.47);
+        this.scene.translate(0,0.2,0.5);
         this.scene.rotate(-80.0*Math.PI/180.0,1,0,0);
         this.scene.rotate(90.0*Math.PI/180.0,0,1,0);
         this.scene.scale(0.025,1,1);
@@ -60,21 +60,21 @@ class MyFlag extends CGFobject {
         this.scene.popMatrix();
 
         this.texture.apply();
-        this.scene.setActiveShader(this.shaderright);
+        this.scene.setActiveShader(this.shaderleft);
         this.fofo.bind(1);
         this.scene.pushMatrix();
         this.scene.scale(1, 0.6, 1);
-        this.scene.translate(0, 0, -0.5);
+        this.scene.translate(0, 0, -0.49);
         this.scene.rotate(90*Math.PI/180, 0, 1, 0);
         this.flag.display();
         this.scene.popMatrix();
         this.scene.setActiveShader(this.scene.defaultShader);
 
-        this.scene.setActiveShader(this.shaderleft);
+        this.scene.setActiveShader(this.shaderright);
         this.fofo.bind(1);
         this.scene.pushMatrix();
         this.scene.scale(1, 0.6, 1);
-        this.scene.translate(0, 0, -0.5);
+        this.scene.translate(0, 0, -0.49);
         this.scene.rotate(-90*Math.PI/180, 0, 1, 0);
         this.flag.display();
         this.scene.popMatrix();

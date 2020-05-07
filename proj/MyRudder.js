@@ -17,7 +17,7 @@ class MyRudder extends CGFobject {
 
     initTexture(scene){
         this.rudder = new CGFappearance(scene);
-        this.rudder.setAmbient(0.9, 0.9, 0.9, 1);
+        this.rudder.setAmbient(1, 1, 1, 1);
         this.rudder.setDiffuse(0.0, 0.0, 0.0, 1);
         this.rudder.setSpecular(0.0, 0.0, 0.0, 1);
         this.rudder.setShininess(10.0);
@@ -25,7 +25,7 @@ class MyRudder extends CGFobject {
         this.rudder.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.white = new CGFappearance(scene);
-        this.white.setAmbient(0.9, 0.9, 0.9, 1);
+        this.white.setAmbient(1, 1, 1, 1);
         this.white.setDiffuse(0.0, 0.0, 0.0, 1);
         this.white.setSpecular(0.0, 0.0, 0.0, 1);
         this.white.setShininess(10.0);
