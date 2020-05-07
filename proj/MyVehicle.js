@@ -69,7 +69,7 @@ class MyVehicle extends CGFobject {
             this.engineR.rotateProp(20);
         }
 
-        //this.flag.update(this.speed, t);
+        this.flag.update(t, this.speed);
     }
 
     turn(val){

@@ -19,9 +19,9 @@ uniform float speed;
 void main() {
     vTextureCoord = aTextureCoord;
 
-    vec3 offset=vec3(0.0,0.0,0.0);
+    vec3 offset = vec3(0.0, 0.0, 0.0);
 
-    offset.z += cos((timeFactor * 2.0) * (1.3 + speed)) * 0.5 * (aVertexPosition.x - 0.5);
+    offset.z = -cos((-aVertexPosition.x + timeFactor * (0.5 + speed * 0.15)) * 20.0) * 0.05;
     
     gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 }
