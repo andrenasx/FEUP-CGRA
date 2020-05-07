@@ -62,6 +62,7 @@ class MyScene extends CGFscene {
         for (var i=0; i<5; i++){
             this.supplies.push(new MySupply(this));
         }
+        this.suppliesCooldown = 10;
         this.billboard = new MyBillboard(this);
 
         //Material
@@ -106,6 +107,7 @@ class MyScene extends CGFscene {
         for (var i=0 ; i<5; i++){
             this.supplies[i].update(t);
         }
+        if(this.suppliesCooldown>0) this.suppliesCooldown-=1;
     }
     checkKeys(){
         var keysPressed = false;
@@ -136,6 +138,7 @@ class MyScene extends CGFscene {
                 this.supplies[i].y=10;
                 this.supplies[i].lastUpdate=0;
             }
+            this.suppliesCooldown = 10;
             this.billboard.reset();
             keysPressed = true;
         }
@@ -144,10 +147,11 @@ class MyScene extends CGFscene {
             keysPressed = true;
         }
 
-        if (this.gui.isKeyPressed("KeyL") && this.nSuppliesDelivered<5){
+        if (this.gui.isKeyPressed("KeyL") && this.suppliesCooldown==0 && this.nSuppliesDelivered<5){
             this.supplies[this.nSuppliesDelivered].drop(this.vehicle.x, this.vehicle.z);
             this.nSuppliesDelivered+=1;
-            console.log(this.nSuppliesDelivered);
+            this.suppliesCooldown=10;
+            keysPressed=true;
         }
 
         if(!keysPressed && !this.vehicle.auto_pilot) this.vehicle.turn(0);
@@ -195,8 +199,9 @@ class MyScene extends CGFscene {
         //this.billboard.display();
         if(this.displayVehicle){
             this.pushMatrix();
+            this.translate(this.vehicle.x, this.vehicle.y, this.vehicle.z);
             this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-            this.material.apply();
+            this.translate(-this.vehicle.x, -this.vehicle.y, -this.vehicle.z);
             this.vehicle.display();
             this.popMatrix();
         }
