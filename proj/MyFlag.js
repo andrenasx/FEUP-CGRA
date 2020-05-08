@@ -10,9 +10,14 @@ class MyFlag extends CGFobject {
         this.flag = new MyPlane(this.scene, 15);
         this.support = new MyQuad2S(this.scene);
         
+        this.initTexture(this.scene);
+
+    }
+
+    initTexture(scene){
         //Flag texture
         this.texture = new CGFappearance(this.scene);
-        this.fofo = new CGFtexture(scene, 'textures/nemo.jpg');
+        this.f = new CGFtexture(scene, 'textures/nemo.jpg');
         this.texture.setAmbient(0.9, 0.9, 0.9, 1);
         this.texture.setDiffuse(0.0, 0.0, 0.0, 1);
         this.texture.setSpecular(0.0, 0.0, 0.0, 1);
@@ -30,9 +35,8 @@ class MyFlag extends CGFobject {
         this.shaderright.setUniformsValues({ uSampler1: 1 });
         this.shaderright.setUniformsValues({ speed: 0 });
         this.shaderright.setUniformsValues({ timeFactor: 0 });
-
     }
-    
+
     update(t, s){
         this.shaderleft.setUniformsValues({ speed: s });
         this.shaderleft.setUniformsValues({ timeFactor: t });
@@ -42,6 +46,7 @@ class MyFlag extends CGFobject {
     }
 	
 	display(){
+        //Supports for the flag
         this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.pushMatrix();
         this.scene.translate(0,-0.2,0.5);
@@ -59,9 +64,10 @@ class MyFlag extends CGFobject {
         this.support.display();
         this.scene.popMatrix();
 
+        //Flag
         this.texture.apply();
         this.scene.setActiveShader(this.shaderleft);
-        this.fofo.bind(1);
+        this.f.bind(1);
         this.scene.pushMatrix();
         this.scene.scale(1, 0.6, 1);
         this.scene.translate(0, 0, -0.49);
@@ -71,7 +77,7 @@ class MyFlag extends CGFobject {
         this.scene.setActiveShader(this.scene.defaultShader);
 
         this.scene.setActiveShader(this.shaderright);
-        this.fofo.bind(1);
+        this.f.bind(1);
         this.scene.pushMatrix();
         this.scene.scale(1, 0.6, 1);
         this.scene.translate(0, 0, -0.49);
