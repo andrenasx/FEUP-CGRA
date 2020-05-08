@@ -17,12 +17,12 @@ class MyFlag extends CGFobject {
     initTexture(scene){
         //Flag texture
         this.texture = new CGFappearance(this.scene);
-        this.f = new CGFtexture(scene, 'textures/nemo.jpg');
+        this.f = new CGFtexture(scene, 'textures/flag.png');
         this.texture.setAmbient(0.9, 0.9, 0.9, 1);
         this.texture.setDiffuse(0.0, 0.0, 0.0, 1);
         this.texture.setSpecular(0.0, 0.0, 0.0, 1);
         this.texture.setShininess(10.0);
-        this.texture.loadTexture('textures/nemo.jpg');
+        this.texture.loadTexture('textures/flag.png');
         this.texture.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
         
         //Movement Shaders

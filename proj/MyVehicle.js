@@ -10,8 +10,7 @@ class MyVehicle extends CGFobject {
 
         this.sphere = new MySphere(this.scene, this.slices, this.stacks);
         this.cockpit = new MyCockpit(this.scene, this.slices, this.stacks);
-        this.engineR = new MyEngine(this.scene, this.slices, this.stacks);
-        this.engineL = new MyEngine(this.scene, this.slices, this.stacks);
+        this.engine = new MyEngine(this.scene, this.slices, this.stacks);
         this.rudderH = new MyRudder(this.scene);
         this.rudderV = new MyRudder(this.scene);
         this.flag = new MyFlag(this.scene);
@@ -57,15 +56,13 @@ class MyVehicle extends CGFobject {
         if(!this.auto_pilot){
             this.x += (this.speed * Math.sin(this.angle * Math.PI/180))*(elapsedTime);
             this.z += (this.speed * Math.cos(this.angle * Math.PI/180))*(elapsedTime);
-            this.engineL.rotateProp(this.speed*t);
-            this.engineR.rotateProp(this.speed*t);
+            this.engine.rotateProp(this.speed*t);
         }
         else {
             this.x = this.x_center - 5*Math.cos(this.angle * Math.PI / 180);
             this.z = this.z_center + 5*Math.sin(this.angle * Math.PI / 180);
             this.turn(elapsedTime * 360/5);
-            this.engineL.rotateProp(20);
-            this.engineR.rotateProp(20);
+            this.engine.rotateProp(20);
         }
 
         this.flag.update(t / 1000 % 1000, this.speed);
@@ -124,9 +121,9 @@ class MyVehicle extends CGFobject {
         //Engines
         this.scene.pushMatrix();
         this.scene.translate(0.15, 0, -0.02);
-        this.engineL.display();
+        this.engine.display();
         this.scene.translate(-0.30,0,0);
-        this.engineR.display();
+        this.engine.display();
         this.scene.popMatrix();
         this.scene.popMatrix();
 
