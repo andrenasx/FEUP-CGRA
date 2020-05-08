@@ -7,7 +7,6 @@ class MyVehicle extends CGFobject {
         super(scene);
         this.slices = slices;
         this.stacks = stacks;
-        //this.initBuffers();
 
         this.sphere = new MySphere(this.scene, this.slices, this.stacks);
         this.cockpit = new MyCockpit(this.scene, this.slices, this.stacks);
@@ -17,7 +16,7 @@ class MyVehicle extends CGFobject {
         this.rudderV = new MyRudder(this.scene);
         this.flag = new MyFlag(this.scene);
 
-        this.angle = 0; //eixo YY
+        this.angle = 0; // YY
         this.speed = 0;
         this.x = 0; //Position
         this.y = 10;
@@ -102,16 +101,13 @@ class MyVehicle extends CGFobject {
     }
 
     display(){
-        /*this.scene.setDiffuse(0,0,1);
-        this.scene.setSpecular(0, 0, 0, 1);
-        this.scene.setAmbient(0.5, 0.5, 0.5, 1);*/
         this.scene.setAmbient(1, 1, 1, 1);
 
         this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
         this.scene.rotate(this.angle*Math.PI/180, 0, 1, 0);
 
-        //Balao
+        //Balloon
         this.scene.pushMatrix();
         
         this.blimp.apply();
