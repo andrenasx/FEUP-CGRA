@@ -25,18 +25,17 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
+        this.cube = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this, 16, 8);
         this.terrain = new MyTerrain(this);
         this.objects=[
             this.cylinder = new MyCylinder(this, 6),
             this.sphere = new MySphere(this, 16, 8),
-            this.cube = new MyCubeMap(this)
         ]
         //this.billboard = new MyBillboard(this);
         this.objectsList={
-            'Sphere':0,
-            'Cylinder':1,
-            'CubeMap':2
+            'Cylinder':0,
+            'Sphere':1
         }
 
         this.landscape = 0;
@@ -46,11 +45,11 @@ class MyScene extends CGFscene {
         }
 
         //Objects connected to MyInterface
-        this.displayAxis = true;
+        this.displayAxis = false;
         this.displayNormals = false;
-        this.displayObject = true;
-        this.currentObject = 2;
-        //this.displayCubeMap = true;
+        this.displayObject = false;
+        this.currentObject = 0;
+        this.displayCubeMap = true;
         this.displayVehicle = true;
         this.displayTerrain = true;
         this.speedFactor = 1; //default value
@@ -79,7 +78,7 @@ class MyScene extends CGFscene {
         this.material.setTexture(this.earth);
     }
     initLights() {
-        this.setGlobalAmbientLight(0.5, 0.5, 0.5, 1.0);
+        this.setGlobalAmbientLight(0.8, 0.8, 0.8, 1.0);
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
@@ -180,6 +179,7 @@ class MyScene extends CGFscene {
         //this.material.apply();
         //this.sphere.display();
         if(this.displayObject){
+            this.material.apply();
             if(this.displayNormals){
                 this.objects[this.currentObject].enableNormalViz();
             }
@@ -188,29 +188,31 @@ class MyScene extends CGFscene {
             }
             this.objects[this.currentObject].display();
         }
-
-        /*if(this.displayCubeMap){
-            this.cube.display();
-        }*/
-        
-        if(this.displayTerrain){
-            this.terrain.display();
+        else {
+            if(this.displayCubeMap){
+                this.cube.display();
+            }
+            
+            if(this.displayTerrain){
+                this.terrain.display();
+            }
+            
+            if(this.displayVehicle){
+                this.pushMatrix();
+                this.translate(this.vehicle.x, this.vehicle.y, this.vehicle.z);
+                this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+                this.translate(-this.vehicle.x, -this.vehicle.y, -this.vehicle.z);
+                this.vehicle.display();
+                this.popMatrix();
+            }
+    
+            for (var i=0 ; i<5; i++){
+                this.supplies[i].display();
+            }
+    
+            this.billboard.display();
         }
-        //this.billboard.display();
-        if(this.displayVehicle){
-            this.pushMatrix();
-            this.translate(this.vehicle.x, this.vehicle.y, this.vehicle.z);
-            this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-            this.translate(-this.vehicle.x, -this.vehicle.y, -this.vehicle.z);
-            this.vehicle.display();
-            this.popMatrix();
-        }
 
-        for (var i=0 ; i<5; i++){
-            this.supplies[i].display();
-        }
-
-        this.billboard.display();
         // ---- END Primitive drawing section
         this.setActiveShader(this.defaultShader);
     }
