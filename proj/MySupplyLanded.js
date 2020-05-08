@@ -26,7 +26,7 @@ class MySupplyLanded extends CGFobject {
         this.surp.setDiffuse(0.0, 0.0, 0.0, 1);
         this.surp.setSpecular(0.0, 0.0, 0.0, 1);
         this.surp.setShininess(10.0);
-        this.surp.loadTexture('textures/unknown.png');
+        this.surp.loadTexture('textures/supply.jpg');
         this.surp.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
     }
 
@@ -34,8 +34,9 @@ class MySupplyLanded extends CGFobject {
         this.scene.pushMatrix();
 
         this.scene.pushMatrix();
-        //this.surp.apply();
+        this.surp.apply();
         this.scene.scale(0.5,0.5,0.5);
+        this.scene.rotate(Math.PI, 0,1,0);
         this.sphere.display();
         this.scene.popMatrix();
 
