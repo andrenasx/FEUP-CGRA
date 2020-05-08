@@ -5,12 +5,7 @@
 class MyBillboard extends CGFobject {
 	constructor(scene) {
         super(scene);
-        this.board = new MyPlane(this.scene, 40);
-        this.back = new MyPlane(this.scene, 40);
-        this.supports = new MyPlane(this.scene, 30);
-        this.supports_back = new MyPlane(this.scene, 30);
-        this.progressbar = new MyPlane(this.scene, 30);
-        
+        this.plane = new MyPlane(this.scene, 40);
         this.progressShader = new CGFshader(scene.gl, 'shaders/progressbar.vert', 'shaders/progressbar.frag');
         this.dropped = 0;
 
@@ -47,53 +42,50 @@ class MyBillboard extends CGFobject {
 	display(){
         this.scene.pushMatrix();
         
-        this.scene.translate(15, 6, -1);
+        this.scene.translate(15, 5.5, -1);
         this.scene.rotate(45*Math.PI/180, 0, 1 ,0);
         
         //Board
         this.front.apply();
         this.scene.pushMatrix();
         this.scene.scale(2, 1, 1);
-        this.board.display();
+        this.plane.display();
         this.scene.popMatrix();
 
         //Back of the board
+        this.support.apply();
         this.scene.pushMatrix();
         this.scene.rotate(-180.0*Math.PI/180.0, 0, 1, 0);
         this.scene.scale(2, 1, 1);
-        this.back.display();
+        this.plane.display();
         this.scene.popMatrix();
 
         //Supports for the board
-        this.support.apply();
         this.scene.pushMatrix();
         this.scene.translate(-0.95, -1, 0);
         this.scene.scale(0.1, 1, 0);
-        this.supports.display();
+        this.plane.display();
         this.scene.popMatrix();
 
-        this.support.apply();
         this.scene.pushMatrix();
         this.scene.translate(0.95, -1, 0);
         this.scene.scale(0.1, 1, 0);
-        this.supports.display();
+        this.plane.display();
         this.scene.popMatrix();
 
         //Backs of the supports
-        this.support.apply();
         this.scene.pushMatrix();
         this.scene.rotate(-180.0*Math.PI/180.0, 0, 1, 0);
         this.scene.translate(-0.95, -1, 0);
         this.scene.scale(0.1, 1, 0);
-        this.supports_back.display();
+        this.plane.display();
         this.scene.popMatrix();
 
-        this.support.apply();
         this.scene.pushMatrix();
         this.scene.rotate(-180.0*Math.PI/180.0, 0, 1, 0);
         this.scene.translate(0.95, -1, 0);
         this.scene.scale(0.1, 1, 0);
-        this.supports_back.display();
+        this.plane.display();
         this.scene.popMatrix();
 
         //Progress Bar
@@ -101,7 +93,7 @@ class MyBillboard extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(0, -0.3, 0.01);
         this.scene.scale(1.5, 0.2, 1);
-        this.progressbar.display();
+        this.plane.display();
         this.scene.popMatrix();
         this.scene.setActiveShader(this.scene.defaultShader);
 
