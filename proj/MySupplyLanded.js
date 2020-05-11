@@ -18,7 +18,7 @@ class MySupplyLanded extends CGFobject {
         this.tex.setDiffuse(0.0, 0.0, 0.0, 1);
         this.tex.setSpecular(0.0, 0.0, 0.0, 1);
         this.tex.setShininess(10.0);
-        this.tex.loadTexture('textures/crate0.png');
+        this.tex.loadTexture('textures/crate.png');
         this.tex.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.surp = new CGFappearance(scene);
