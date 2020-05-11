@@ -26,23 +26,16 @@ class MyFlag extends CGFobject {
         this.texture.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
         
         //Movement Shaders
-        this.shaderleft=new CGFshader(this.scene.gl, "shaders/flagleft.vert", "shaders/flag.frag");
-        this.shaderleft.setUniformsValues({ uSampler1: 1 });
-        this.shaderleft.setUniformsValues({ speed: 0 });
-        this.shaderleft.setUniformsValues({ timeFactor: 0 });
+        this.shader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
+        this.shader.setUniformsValues({ uSampler1: 1 });
+        this.shader.setUniformsValues({ speed: 0 });
+        this.shader.setUniformsValues({ timeFactor: 0 });
 
-        this.shaderright = new CGFshader(this.scene.gl, "shaders/flagright.vert", "shaders/flag.frag");
-        this.shaderright.setUniformsValues({ uSampler1: 1 });
-        this.shaderright.setUniformsValues({ speed: 0 });
-        this.shaderright.setUniformsValues({ timeFactor: 0 });
     }
 
     update(t, s){
-        this.shaderleft.setUniformsValues({ speed: s });
-        this.shaderleft.setUniformsValues({ timeFactor: t });
-
-        this.shaderright.setUniformsValues({ speed: s });
-        this.shaderright.setUniformsValues({ timeFactor: t});
+        this.shader.setUniformsValues({ speed: s });
+        this.shader.setUniformsValues({ timeFactor: t });
     }
 	
 	display(){
@@ -66,22 +59,24 @@ class MyFlag extends CGFobject {
 
         //Flag
         this.texture.apply();
-        this.scene.setActiveShader(this.shaderleft);
+        this.scene.setActiveShader(this.shader);
         this.f.bind(1);
         this.scene.pushMatrix();
         this.scene.scale(1, 0.6, 1);
         this.scene.translate(0, 0, -0.49);
         this.scene.rotate(90*Math.PI/180, 0, 1, 0);
+        this.shader.setUniformsValues({side: 0});
         this.flag.display();
         this.scene.popMatrix();
         this.scene.setActiveShader(this.scene.defaultShader);
 
-        this.scene.setActiveShader(this.shaderright);
+        this.scene.setActiveShader(this.shader);
         this.f.bind(1);
         this.scene.pushMatrix();
         this.scene.scale(1, 0.6, 1);
         this.scene.translate(0, 0, -0.49);
         this.scene.rotate(-90*Math.PI/180, 0, 1, 0);
+        this.shader.setUniformsValues({side: 1});
         this.flag.display();
         this.scene.popMatrix();
         this.scene.setActiveShader(this.scene.defaultShader);
