@@ -61,7 +61,7 @@ class MyScene extends CGFscene {
         for (var i=0; i<5; i++){
             this.supplies.push(new MySupply(this));
         }
-        this.suppliesCooldown = 10;
+        this.suppliesCooldown = 0;
         this.billboard = new MyBillboard(this);
 
         //Material
@@ -78,7 +78,7 @@ class MyScene extends CGFscene {
         this.material.setTexture(this.earth);
     }
     initLights() {
-        this.setGlobalAmbientLight(0.8, 0.8, 0.8, 1.0);
+        this.setGlobalAmbientLight(0.5, 0.5, 0.5, 1.0);
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
