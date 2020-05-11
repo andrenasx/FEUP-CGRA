@@ -19,6 +19,15 @@ class MyTerrain extends CGFobject {
 		this.terrainShader.setUniformsValues({uSampler2: 2});
     }
 
+    updateTexture(scene){
+        if(scene.landscape == 0){
+            this.terrainTex = new CGFtexture(scene, "textures/terrain.jpg");
+        }
+        else if(scene.landscape == 1) {
+            this.terrainTex = new CGFtexture(scene, "textures/snow.jpg");
+        }
+    }
+
     display(){
         this.scene.setActiveShader(this.terrainShader);
         this.terrainTex.bind(1);

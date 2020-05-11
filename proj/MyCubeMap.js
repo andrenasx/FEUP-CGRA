@@ -62,8 +62,8 @@ class MyCubeMap extends CGFobject {
         this.bot.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
     }
 
-    updateTexture(){
-        if(this.scene.landscape == 0){
+    updateTexture(scene){
+        if(scene.landscape == 0){
             this.front.loadTexture('images/split_cubemap/front.png');
             this.left.loadTexture('images/split_cubemap/left.png');
             this.right.loadTexture('images/split_cubemap/right.png');
@@ -71,7 +71,7 @@ class MyCubeMap extends CGFobject {
             this.top.loadTexture('images/split_cubemap/top.png');
             this.bot.loadTexture('images/split_cubemap/bottom.png');
         }
-        else if(this.scene.landscape == 1) {
+        else if(scene.landscape == 1) {
             this.front.loadTexture('images/split_cubemap2/front.png');
             this.left.loadTexture('images/split_cubemap2/left.png');
             this.right.loadTexture('images/split_cubemap2/right.png');

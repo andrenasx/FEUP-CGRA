@@ -97,7 +97,8 @@ class MyScene extends CGFscene {
         this.objects[this.currentObject];
     }
     updateLandscape(){
-        this.cube.updateTexture();
+        this.cube.updateTexture(this);
+        this.terrain.updateTexture(this);
     }
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
