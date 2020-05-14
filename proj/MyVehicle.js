@@ -33,8 +33,8 @@ class MyVehicle extends CGFobject {
     initTexture(scene){
         this.blimp = new CGFappearance(scene);
         this.blimp.setAmbient(0.9, 0.9, 0.9, 1);
-        this.blimp.setDiffuse(0.0, 0.0, 0.0, 1);
-        this.blimp.setSpecular(0.0, 0.0, 0.0, 1);
+        this.blimp.setDiffuse(0.5, 0.3, 0.4, 1);
+        this.blimp.setSpecular(0.2, 0.3, 0.8, 1);
         this.blimp.setShininess(10.0);
         this.blimp.loadTexture('textures/blimp.png');
         this.blimp.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
