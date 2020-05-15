@@ -42,16 +42,16 @@ class MyFlag extends CGFobject {
         //Supports for the flag
         this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.pushMatrix();
-        this.scene.translate(0,-0.2,0.5);
-        this.scene.rotate(80.0*Math.PI/180.0,1,0,0);
+        this.scene.translate(0,-0.16,0.49);
+        this.scene.rotate(75.0*Math.PI/180.0,1,0,0);
         this.scene.rotate(90.0*Math.PI/180.0,0,1,0);
         this.scene.scale(0.025,1,1);
         this.support.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0,0.2,0.5);
-        this.scene.rotate(-80.0*Math.PI/180.0,1,0,0);
+        this.scene.translate(0,0.16,0.49);
+        this.scene.rotate(-75.0*Math.PI/180.0,1,0,0);
         this.scene.rotate(90.0*Math.PI/180.0,0,1,0);
         this.scene.scale(0.025,1,1);
         this.support.display();
