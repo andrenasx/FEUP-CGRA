@@ -26,17 +26,8 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.cube = new MyCubeMap(this);
-        this.vehicle = new MyVehicle(this, 16, 8);
+        this.vehicle = new MyVehicle(this, 20, 10);
         this.terrain = new MyTerrain(this);
-        this.objects=[
-            this.cylinder = new MyCylinder(this, 6),
-            this.sphere = new MySphere(this, 16, 8),
-        ]
-        //this.billboard = new MyBillboard(this);
-        this.objectsList={
-            'Cylinder':0,
-            'Sphere':1
-        }
 
         this.landscape = 0;
         this.landscapeList = {
@@ -177,42 +168,28 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        //this.material.apply();
-        //this.sphere.display();
-        if(this.displayObject){
-            this.material.apply();
-            if(this.displayNormals){
-                this.objects[this.currentObject].enableNormalViz();
-            }
-            else{
-                this.objects[this.currentObject].disableNormalViz();
-            }
-            this.objects[this.currentObject].display();
+        if(this.displayCubeMap){
+            this.cube.display();
         }
-        else {
-            if(this.displayCubeMap){
-                this.cube.display();
-            }
-            
-            if(this.displayTerrain){
-                this.terrain.display();
-            }
-            
-            if(this.displayVehicle){
-                this.pushMatrix();
-                this.translate(this.vehicle.x, this.vehicle.y, this.vehicle.z);
-                this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-                this.translate(-this.vehicle.x, -this.vehicle.y, -this.vehicle.z);
-                this.vehicle.display();
-                this.popMatrix();
-            }
-    
-            for (var i=0 ; i<5; i++){
-                this.supplies[i].display();
-            }
-    
-            this.billboard.display();
+        
+        if(this.displayTerrain){
+            this.terrain.display();
         }
+        
+        if(this.displayVehicle){
+            this.pushMatrix();
+            this.translate(this.vehicle.x, this.vehicle.y, this.vehicle.z);
+            this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+            this.translate(-this.vehicle.x, -this.vehicle.y, -this.vehicle.z);
+            this.vehicle.display();
+            this.popMatrix();
+        }
+
+        for (var i=0 ; i<5; i++){
+            this.supplies[i].display();
+        }
+
+        this.billboard.display();
 
         // ---- END Primitive drawing section
         this.setActiveShader(this.defaultShader);
