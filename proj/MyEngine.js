@@ -16,15 +16,15 @@ class MyEngine extends CGFobject {
 
     initTexture(scene){
         this.white = new CGFappearance(scene);
-        this.white.setAmbient(0.9, 0.9, 0.9, 1);
-        this.white.setDiffuse(0.0, 0.0, 0.0, 1);
-        this.white.setSpecular(0.0, 0.0, 0.0, 1);
+        this.white.setAmbient(1, 1, 1, 1);
+        this.white.setDiffuse(0.5, 0.5, 0.5, 1);
+        this.white.setSpecular(0.3, 0.3, 0.3, 1);
         this.white.setShininess(10.0);
 
         this.red = new CGFappearance(scene);
-        this.red.setAmbient(0.9, 0.1, 0.1, 1);
-        this.red.setDiffuse(0.0, 0.0, 0.0, 1);
-        this.red.setSpecular(0.0, 0.0, 0.0, 1);
+        this.red.setAmbient(1, 0.1, 0.1, 1);
+        this.red.setDiffuse(0.5, 0.2, 0.2, 1);
+        this.red.setSpecular(0.3, 0.1, 0.1, 1);
         this.red.setShininess(10.0);
     }
 

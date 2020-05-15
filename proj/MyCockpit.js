@@ -16,8 +16,8 @@ class MyCockpit extends CGFobject {
     initTexture(scene){
         this.white = new CGFappearance(scene);
         this.white.setAmbient(1, 1, 1, 1);
-        this.white.setDiffuse(0.0, 0.0, 0.0, 1);
-        this.white.setSpecular(0.0, 0.0, 0.0, 1);
+        this.white.setDiffuse(0.5, 0.5, 0.5, 1);
+        this.white.setSpecular(0.2, 0.2, 0.2, 1);
         this.white.setShininess(10.0);
     }
 
