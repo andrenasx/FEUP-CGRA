@@ -32,9 +32,9 @@ class MyVehicle extends CGFobject {
 
     initTexture(scene){
         this.blimp = new CGFappearance(scene);
-        this.blimp.setAmbient(0.9, 0.9, 0.9, 1);
-        this.blimp.setDiffuse(0.5, 0.3, 0.4, 1);
-        this.blimp.setSpecular(0.2, 0.3, 0.8, 1);
+        this.blimp.setAmbient(1, 1, 1, 1);
+        this.blimp.setDiffuse(0.5, 0.5, 0.5, 1);
+        this.blimp.setSpecular(0.3, 0.3, 0.3, 1);
         this.blimp.setShininess(10.0);
         this.blimp.loadTexture('textures/blimp.png');
         this.blimp.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
@@ -130,28 +130,28 @@ class MyVehicle extends CGFobject {
         //Rudders
         this.scene.pushMatrix();
 
-            //horizontal
-        this.scene.pushMatrix();
-        this.scene.translate(0.4, 0, -0.3);
-        this.rudderH.display();
-        this.scene.popMatrix();
-
-        this.scene.pushMatrix();
-        this.scene.translate(-0.4, 0, -0.3);
-        this.rudderH.display();
-        this.scene.popMatrix();
-
             //Vertical
         this.scene.pushMatrix();
-        this.scene.translate(0,0.4,-0.3);
-        this.scene.rotate(Math.PI/2, 0,0,1);
+        this.scene.translate(0,0.3,-1);
         this.rudderV.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0,-0.4,-0.3);
-        this.scene.rotate(Math.PI/2, 0,0,1);
+        this.scene.translate(0,-0.3,-1);
         this.rudderV.display();
+        this.scene.popMatrix();
+
+            //Horizontal
+        this.scene.pushMatrix();
+        this.scene.translate(0.3, 0, -1);
+        this.scene.rotate(Math.PI/2, 0,0,1);
+        this.rudderH.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(-0.3, 0, -1);
+        this.scene.rotate(Math.PI/2, 0,0,1);
+        this.rudderH.display();
         this.scene.popMatrix();
 
         this.scene.popMatrix();
