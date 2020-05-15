@@ -23,16 +23,6 @@ class MySupply extends CGFobject {
         this.lastUpdate = 0; //Moving per second
     }
 
-    initTexture(scene){
-        this.tex = new CGFappearance(scene);
-        this.tex.setAmbient(0.9, 0.9, 0.9, 1);
-        this.tex.setDiffuse(0.0, 0.0, 0.0, 1);
-        this.tex.setSpecular(0.0, 0.0, 0.0, 1);
-        this.tex.setShininess(10.0);
-        this.tex.loadTexture('textures/crate0.png');
-        this.tex.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-    }
-
     update(t){
         if(this.state == SupplyStates.FALLING){
             if (this.lastUpdate==0) this.lastUpdate = t;
