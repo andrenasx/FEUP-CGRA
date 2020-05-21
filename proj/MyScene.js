@@ -37,11 +37,9 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = false;
-        this.displayNormals = false;
         this.displayObject = false;
         this.currentObject = 0;
         this.displayCubeMap = true;
-        this.displayVehicle = true;
         this.displayTerrain = true;
         this.speedFactor = 1; //default value
         this.scaleFactor = 1;
@@ -176,15 +174,15 @@ class MyScene extends CGFscene {
             this.terrain.display();
         }
         
-        if(this.displayVehicle){
-            this.pushMatrix();
-            this.translate(this.vehicle.x, this.vehicle.y, this.vehicle.z);
-            this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-            this.translate(-this.vehicle.x, -this.vehicle.y, -this.vehicle.z);
-            this.vehicle.display();
-            this.popMatrix();
-        }
+        //Show vehicle
+        this.pushMatrix();
+        this.translate(this.vehicle.x, this.vehicle.y, this.vehicle.z);
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+        this.translate(-this.vehicle.x, -this.vehicle.y, -this.vehicle.z);
+        this.vehicle.display();
+        this.popMatrix();
 
+        //Show supplies
         for (var i=0 ; i<5; i++){
             this.supplies[i].display();
         }
