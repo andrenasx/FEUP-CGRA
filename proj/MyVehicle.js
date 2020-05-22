@@ -90,11 +90,16 @@ class MyVehicle extends CGFobject {
         this.lastUpdate = 0;
     }
 
-    autoPilot(){
-        this.auto_pilot = true;
-        var perpendicularAngle = (this.angle + 90) * Math.PI / 180;
-        this.x_center = this.x + 5*Math.sin(perpendicularAngle);
-        this.z_center = this.z + 5*Math.cos(perpendicularAngle);
+    toggleAutoPilot(){
+        if(!this.auto_pilot){
+            this.auto_pilot = true;
+            var perpendicularAngle = (this.angle + 90) * Math.PI / 180;
+            this.x_center = this.x + 5*Math.sin(perpendicularAngle);
+            this.z_center = this.z + 5*Math.cos(perpendicularAngle);
+        }
+        else {
+            this.auto_pilot = false;    
+        }
     }
 
     display(){
