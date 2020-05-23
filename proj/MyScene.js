@@ -44,6 +44,8 @@ class MyScene extends CGFscene {
         this.speedFactor = 1; //default value
         this.scaleFactor = 1;
 
+        this.autoPilotCooldown = 0;
+
         //Supplies
         this.nSuppliesDelivered = 0;
         this.supplies = [];
@@ -96,7 +98,8 @@ class MyScene extends CGFscene {
         for (var i=0 ; i<5; i++){
             this.supplies[i].update(t);
         }
-        if(this.suppliesCooldown>0) this.suppliesCooldown-=1;
+        if(this.suppliesCooldown>0) this.suppliesCooldown--;
+        if(this.autoPilotCooldown>0) this.autoPilotCooldown--;
     }
     checkKeys(){
         var keysPressed = false;
@@ -131,8 +134,9 @@ class MyScene extends CGFscene {
             this.billboard.reset();
             keysPressed = true;
         }
-        if (this.gui.isKeyPressed("KeyP")){
+        if (this.gui.isKeyPressed("KeyP") && this.autoPilotCooldown==0){
             this.vehicle.toggleAutoPilot();
+            this.autoPilotCooldown=3;
             keysPressed = true;
         }
 
