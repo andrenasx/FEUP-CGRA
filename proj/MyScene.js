@@ -61,12 +61,6 @@ class MyScene extends CGFscene {
         this.material.setDiffuse(0.9,0.9,0.9,1);
         this.material.setDiffuse(0.2,0.2,0.2,1);
         this.material.setShininess(10);
-        this.material.loadTexture('images/earth.jpg');
-        this.material.setTextureWrap('REPEAT','REPEAT');
-
-        //Texture
-        this.earth = new CGFtexture(this, 'images/earth.jpg');
-        this.material.setTexture(this.earth);
     }
     initLights() {
         this.setGlobalAmbientLight(0.5, 0.5, 0.5, 1.0);

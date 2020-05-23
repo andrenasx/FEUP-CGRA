@@ -42,7 +42,7 @@ class MyBillboard extends CGFobject {
 	display(){
         this.scene.pushMatrix();
         
-        this.scene.translate(15, 5.5, -1);
+        this.scene.translate(14.3, 5, -1);
         this.scene.rotate(45*Math.PI/180, 0, 1 ,0);
         
         //Board
