@@ -8,15 +8,6 @@ class MyTerrain extends CGFobject {
     }
 
     init(scene){
-        //Appearance
-        this.terrain = new CGFappearance(scene);
-        this.terrain.setAmbient(0.9, 0.9, 0.9, 1);
-        this.terrain.setDiffuse(0.0, 0.0, 0.0, 1);
-        this.terrain.setSpecular(0.0, 0.0, 0.0, 1);
-        this.terrain.setShininess(10.0);
-        this.terrain.loadTexture("textures/terrain.jpg");
-        this.terrain.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-        
         //Texture
         this.terrainTex = new CGFtexture(scene, "textures/terrain.jpg");
         this.terrainMap = new CGFtexture(scene, "textures/heightmapcenter.jpg");
@@ -38,7 +29,6 @@ class MyTerrain extends CGFobject {
     }
 
     display(){
-        this.terrain.apply();
         this.scene.setActiveShader(this.terrainShader);
         this.terrainTex.bind(1);
         this.terrainMap.bind(2);

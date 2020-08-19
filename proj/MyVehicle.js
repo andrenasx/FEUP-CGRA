@@ -38,15 +38,7 @@ class MyVehicle extends CGFobject {
         this.blimp.setShininess(10.0);
         this.blimp.loadTexture('textures/blimp.png');
         this.blimp.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-    }
-    
-    updateBuffers(complexity){
-        this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
-
-        // reinitialize buffers
-        this.initBuffers();
-        this.initNormalVizBuffers();
-    }
+    }   
 
     update(t){
         if (this.lastUpdate==0) this.lastUpdate = t;
@@ -71,7 +63,7 @@ class MyVehicle extends CGFobject {
     turn(val){
         this.angle += val;
         this.angle %= 360;
-        this.rudderV.rotRudder(val*this.speed*0.2);
+        this.rudderV.rotRudder(val*this.speed);
     }
 
     accelerate(val){
@@ -168,7 +160,5 @@ class MyVehicle extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.popMatrix();
-    }
-
-    
+    }    
 }
