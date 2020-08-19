@@ -24,6 +24,7 @@ class MySupplyDropping extends CGFobject {
     display(){
         this.scene.pushMatrix();
         this.tex.apply();
+        this.scene.scale(0.7,0.7,0.7);
         this.cube.display();
         this.scene.popMatrix();
     }
