@@ -109,11 +109,11 @@ class MyScene extends CGFscene {
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyA")){
-            if(!this.vehicle.auto_pilot)    this.vehicle.turn(10);
+            if(!this.vehicle.auto_pilot)    this.vehicle.turn(3);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyD")){
-            if(!this.vehicle.auto_pilot)    this.vehicle.turn(-10);
+            if(!this.vehicle.auto_pilot)    this.vehicle.turn(-3);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyR")){

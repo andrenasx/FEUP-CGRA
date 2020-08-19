@@ -16,8 +16,8 @@ class MyFlag extends CGFobject {
 
     initTexture(scene){
         //Flag texture
-        this.texture = new CGFappearance(this.scene);
         this.f = new CGFtexture(scene, 'textures/flag.png');
+        this.texture = new CGFappearance(this.scene);
         this.texture.setAmbient(0.9, 0.9, 0.9, 1);
         this.texture.setDiffuse(0.0, 0.0, 0.0, 1);
         this.texture.setSpecular(0.0, 0.0, 0.0, 1);
@@ -40,7 +40,6 @@ class MyFlag extends CGFobject {
 	
 	display(){
         //Supports for the flag
-        this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.pushMatrix();
         this.scene.translate(0,-0.16,0.49);
         this.scene.rotate(75.0*Math.PI/180.0,1,0,0);
@@ -68,10 +67,7 @@ class MyFlag extends CGFobject {
         this.shader.setUniformsValues({side: 0});
         this.flag.display();
         this.scene.popMatrix();
-        this.scene.setActiveShader(this.scene.defaultShader);
 
-        this.scene.setActiveShader(this.shader);
-        this.f.bind(1);
         this.scene.pushMatrix();
         this.scene.scale(1, 0.6, 1);
         this.scene.translate(0, 0, -0.49);
@@ -82,4 +78,3 @@ class MyFlag extends CGFobject {
         this.scene.setActiveShader(this.scene.defaultShader);
     }
 }
-
