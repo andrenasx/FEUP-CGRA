@@ -29,7 +29,7 @@ class MyScene extends CGFscene {
         this.vehicle = new MyVehicle(this, 20, 10);
         this.terrain = new MyTerrain(this);
 
-        this.landscape = 0;
+        this.landscape = 1;
         this.landscapeList = {
             'Default':0,
             'Mountain':1
@@ -38,7 +38,6 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = false;
         this.displayObject = false;
-        this.currentObject = 0;
         this.displayCubeMap = true;
         this.displayTerrain = true;
         this.speedFactor = 1; //default value
@@ -77,9 +76,6 @@ class MyScene extends CGFscene {
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
-    }
-    updateObject(){
-        this.objects[this.currentObject];
     }
     updateLandscape(){
         this.cube.updateTexture(this);
@@ -188,6 +184,6 @@ class MyScene extends CGFscene {
         this.billboard.display();
 
         // ---- END Primitive drawing section
-        this.setActiveShader(this.defaultShader);
+        this.setActiveShaderSimple(this.defaultShader);
     }
 }

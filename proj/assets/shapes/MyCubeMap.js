@@ -18,7 +18,7 @@ class MyCubeMap extends CGFobject {
         this.front.setDiffuse(0.0, 0.0, 0.0, 1);
         this.front.setSpecular(0.0, 0.0, 0.0, 1);
         this.front.setShininess(10.0);
-        this.front.loadTexture('textures/split_cubemap/front.png');
+        this.front.loadTexture('textures/split_cubemap2/front.png');
         this.front.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.left = new CGFappearance(scene);
@@ -26,7 +26,7 @@ class MyCubeMap extends CGFobject {
         this.left.setDiffuse(0.0, 0.0, 0.0, 1);
         this.left.setSpecular(0.0, 0.0, 0.0, 1);
         this.left.setShininess(10.0);
-        this.left.loadTexture('textures/split_cubemap/left.png');
+        this.left.loadTexture('textures/split_cubemap2/left.png');
         this.left.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
         
         this.right = new CGFappearance(scene);
@@ -34,7 +34,7 @@ class MyCubeMap extends CGFobject {
         this.right.setDiffuse(0.0, 0.0, 0.0, 1);
         this.right.setSpecular(0.0, 0.0, 0.0, 1);
         this.right.setShininess(10.0);
-        this.right.loadTexture('textures/split_cubemap/right.png');
+        this.right.loadTexture('textures/split_cubemap2/right.png');
         this.right.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.back = new CGFappearance(scene);
@@ -42,7 +42,7 @@ class MyCubeMap extends CGFobject {
         this.back.setDiffuse(0.0, 0.0, 0.0, 1);
         this.back.setSpecular(0.0, 0.0, 0.0, 1);
         this.back.setShininess(10.0);
-        this.back.loadTexture('textures/split_cubemap/back.png');
+        this.back.loadTexture('textures/split_cubemap2/back.png');
         this.back.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.top = new CGFappearance(scene);
@@ -50,7 +50,7 @@ class MyCubeMap extends CGFobject {
         this.top.setDiffuse(0.0, 0.0, 0.0, 1);
         this.top.setSpecular(0.0, 0.0, 0.0, 1);
         this.top.setShininess(10.0);
-        this.top.loadTexture('textures/split_cubemap/top.png');
+        this.top.loadTexture('textures/split_cubemap2/top.png');
         this.top.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.bot = new CGFappearance(scene);
@@ -58,7 +58,7 @@ class MyCubeMap extends CGFobject {
         this.bot.setDiffuse(0.0, 0.0, 0.0, 1);
         this.bot.setSpecular(0.0, 0.0, 0.0, 1);
         this.bot.setShininess(10.0);
-        this.bot.loadTexture('textures/split_cubemap/bottom.png');
+        this.bot.loadTexture('textures/split_cubemap2/bottom.png');
         this.bot.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
     }
 
